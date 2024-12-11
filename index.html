@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WeatherWise</title>
+    <link rel="stylesheet" href="./style.css">
+    <script src="script.js"></script>
+</head>
+<body>
+    <div id="weather-container">
+        <h1>WeatherWise</h1>
+        <input type="text" id="query" placeholder="Type or Speak Question">
+        <p id="textarea"></p>
+        <button id="speak">Speak</button>
+        <button onclick="getWeather()">Search</button>
+        <button id="clear" onclick="Clear()">Clear</button>
+
+        <img id="weather-icon" alt="Weather Icon">
+
+        <div id="temp-div"></div>
+
+        <div id="weather-info"></div>
+
+        <div id="hourly-forecast"></div>
+    </div>
+    <script>
+        //Logic to convert the speach into text and fill the input box 
+        var speak = document.getElementById('speak');
+        var inputarea = document.getElementById('query');
+        var SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+        var recognition = new SpeechRecognition();
+        speak.addEventListener('click', function () {
+            recognition.start();
+            inputarea.value = '...speaking';
+        })
+        recognition.onresult = function (e) {
+            var transcript = e.results[0][0].transcript;
+           
+            inputarea.value = transcript;
+        }
+
+  
+
+    
+    </script>
+</body>
+</html>
+
